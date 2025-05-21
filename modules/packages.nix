@@ -1,5 +1,8 @@
-{ pkgs, unstable-pkgs, ... }:
+{ pkgs, system, inputs, ... }:
 
+let 
+  unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+in
 {
 	# Allow unfree packages
 	nixpkgs.config.allowUnfree = true;
