@@ -6,19 +6,20 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs:
+  outputs = { nixpkgs, ... } @ inputs:
   let
-    system = "x86_64-linux";
+    system = "x86_64_linux";
   in 
   {
+    inherit system;
+
   	nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit  system;
+      specialArgs = { 
+        unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages."${system}";
+      };
       modules = [
         ./configuration.nix
       ];
-      specialArgs = { 
-        unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-      };
     };
   };
 }

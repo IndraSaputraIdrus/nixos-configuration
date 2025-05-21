@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable-pkgs, ... }:
 
 {
 	# Allow unfree packages
@@ -7,7 +7,6 @@
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
-		neovim
 		git
 		htop
 		bspwm
@@ -18,5 +17,11 @@
 		neofetch
 		chromium
 		ntfs3g
+    unzip
+		nodejs_23
+
+
+    # Unstable packages
+		unstable-pkgs.neovim
 	];
 }
