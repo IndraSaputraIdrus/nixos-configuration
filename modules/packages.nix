@@ -19,6 +19,7 @@
 		ntfs3g
     unzip
 		nodejs_23
+    xclip
 
 
     # Unstable packages

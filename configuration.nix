@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
@@ -10,9 +10,17 @@
       ./hardware-configuration.nix
       ./modules/packages.nix
       ./modules/desktop.nix
-      ./modules/environment.nix
       ./modules/users.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
+
+  # Home manage
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      nixdrz = import ./home.nix;
+    };
+  };
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
