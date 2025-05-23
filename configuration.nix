@@ -2,21 +2,45 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
-
+{ inputs, system, config, pkgs, ... }:
+let 
+  unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+in
 {
   imports =
     [ 
       ./hardware-configuration.nix
-      ./modules/packages.nix
-      ./modules/desktop.nix
-      ./modules/users.nix
       inputs.home-manager.nixosModules.home-manager
     ];
 
+	# Allow unfree packages
+	nixpkgs.config.allowUnfree = true;
+
+	# List packages installed in system profile. To search, run:
+	# $ nix search wget
+	environment.systemPackages = with pkgs; [
+		git
+		htop
+		bspwm
+		sxhkd
+		polybar
+		rofi
+		kitty
+		neofetch
+		chromium
+		ntfs3g
+    unzip
+		nodejs_23
+    xclip
+
+
+    # Unstable packages
+		unstable-pkgs.neovim
+	];
+
   # Home manage
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs pkgs; };
     users = {
       nixdrz = import ./home.nix;
     };
@@ -25,9 +49,31 @@
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Window Manager
+  services.xserver.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.windowManager.bspwm.enable = true;
+
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+	# Define a user account. Don't forget to set a password with ‘passwd’.
+	users.users.nixdrz = {
+		isNormalUser = true;
+		description = "nix-drz";
+		extraGroups = [ "networkmanager" "wheel" ];
+		packages = with pkgs; [];
+	};
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+  # networking.wireless.enable = true;  # Enable wireless support via wpa_supplicant
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -36,8 +82,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Makassar";
