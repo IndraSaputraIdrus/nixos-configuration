@@ -36,11 +36,16 @@ in
 
     # Unstable packages
 		unstable-pkgs.neovim
+
+    # home manager command
+    inputs.home-manager.packages.${system}.home-manager
 	];
 
   # Home manage
   home-manager = {
     extraSpecialArgs = { inherit inputs pkgs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
     users = {
       nixdrz = import ./home.nix;
     };

@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  stPkgs = import ./home-packages/st/default.nix { inherit pkgs; };
 in 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -21,7 +20,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    stPkgs.st
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -78,4 +76,6 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.bash.enable = true;
 }
