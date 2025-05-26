@@ -2,15 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, system, config, pkgs, ... }:
-let 
-  unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-in
+{ inputs, system, config, pkgs, pkgs-unstable, ... }:
+
 {
   imports =
     [ 
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
     ];
 
 	# Allow unfree packages
@@ -26,23 +23,14 @@ in
 		kitty
 		chromium
 		ntfs3g
-		nodejs_23
+		nodejs_24
     xclip
+    neovim
 
 
     # Unstable packages
-		unstable-pkgs.neovim
+		# pkgs-unstable.neovim
 	];
-
-  # Home manage
-  home-manager = {
-    extraSpecialArgs = { inherit inputs pkgs; };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users = {
-      nixdrz = import ./home.nix;
-    };
-  };
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
