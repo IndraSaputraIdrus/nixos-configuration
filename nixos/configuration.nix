@@ -26,6 +26,7 @@
 		nodejs_24
     xclip
     neovim
+    firefox-esr
 
 
     # Unstable packages
@@ -81,6 +82,11 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
+  # nix-ld adalah sebuah utilitas di ekosistem Nix (khususnya NixOS) yang 
+  # memungkinkan kamu menjalankan program biner (binary/executable) yang tidak 
+  # dibangun menggunakan Nix, tetapi secara otomatis menyediakan pustaka (library) 
+  # yang dibutuhkan dari sistem Nix kamu.
+  programs.nix-ld.enable = true;
 }

@@ -38,7 +38,12 @@
 		VISUAL = "nvim";
     CC = "gcc";
     CXX = "g++";
+    PATH = "$PATH:$HOME/.bun/bin";
   };
+
+  # home.sessionPath = [
+  #   "$HOME/.bun/bin"
+  # ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
