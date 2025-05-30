@@ -14,7 +14,10 @@
     bat
     xdg-user-dirs
     gcc
-
+    st
+    fira-code
+    fira-code-symbols
+    ubuntu_font_family
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -22,37 +25,29 @@
   home.file = {
   };
 
-  # xdg.configFile = {
-  #   "bspwm/bspwmrc" = { 
-  #     source = "~/Documents/dotfiles/bspwm/bspwmrc"
-  #     executable = true
-  #   }
-  #
-  #   "sxhkd/sxhkdrc" = {
-  #     source = "~/Documents/dotfiles/sxhkd/sxhkdrc"
-  #   }
-  # }
-
   home.sessionVariables = {
-		EDITOR = "nvim";
-		VISUAL = "nvim";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     CC = "gcc";
     CXX = "g++";
     PATH = "$PATH:$HOME/.bun/bin";
   };
 
-  # home.sessionPath = [
-  #   "$HOME/.bun/bin"
-  # ];
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.bash = {
+  fonts.fontconfig = {
     enable = true;
-    shellAliases = {
-      btw = "echo I use nixos btw";
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos/#nixos";
+    defaultFonts = {
+      monospace = [ "Ubuntu Mono" ];
+      sansSerif = [ "Ubuntu" ];
+      serif = [ "Ubuntu" ];
     };
   };
+
+  # Modules
+  imports = [
+    ./modules/kitty.nix
+    ./modules/bash.nix
+  ];
 }
