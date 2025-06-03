@@ -15,6 +15,7 @@
     fira-code
     fira-code-symbols
     ubuntu_font_family
+    maim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -33,5 +34,10 @@
   programs.home-manager.enable = true;
 
   # Modules
-  imports = [ ./modules/kitty.nix ./modules/bash.nix ./modules/fonts.nix ];
+  imports = [
+    ./modules/kitty.nix
+    ./modules/bash.nix
+    ./modules/fonts.nix
+    ./modules/urxvt.nix
+  ];
 }

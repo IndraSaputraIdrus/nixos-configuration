@@ -10,9 +10,10 @@
     ./modules/bootloader.nix
     ./modules/network.nix
     ./modules/users.nix
-    ./modules/bspwm.nix
     ./modules/nix_ld.nix
     ./modules/ram_optimization.nix
+    ./modules/bspwm.nix
+    # ./modules/hyprland.nix
   ];
 
   # List packages installed in system profile. To search, run: $ nix search wget
