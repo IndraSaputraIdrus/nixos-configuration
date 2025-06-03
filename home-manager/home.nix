@@ -3,17 +3,14 @@
 {
   home.username = "nixdrz";
   home.homeDirectory = "/home/nixdrz";
-
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
     btop
     neofetch
     tree
-    unzip
     bat
     xdg-user-dirs
-    gcc
     st
     fira-code
     fira-code-symbols
@@ -22,8 +19,7 @@
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
-  };
+  home.file = { };
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -36,18 +32,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      monospace = [ "Ubuntu Mono" ];
-      sansSerif = [ "Ubuntu" ];
-      serif = [ "Ubuntu" ];
-    };
-  };
-
   # Modules
-  imports = [
-    ./modules/kitty.nix
-    ./modules/bash.nix
-  ];
+  imports = [ ./modules/kitty.nix ./modules/bash.nix ./modules/fonts.nix ];
 }

@@ -5,70 +5,33 @@
 { inputs, system, config, pkgs, pkgs-unstable, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./modules/bootloader.nix
+    ./modules/network.nix
+    ./modules/users.nix
+    ./modules/bspwm.nix
+    ./modules/nix_ld.nix
+    ./modules/ram_optimization.nix
+  ];
 
-	# Allow unfree packages
-	nixpkgs.config.allowUnfree = true;
-
-	# List packages installed in system profile. To search, run: $ nix search wget
-	environment.systemPackages = with pkgs; [
-		git
-		bspwm
-		sxhkd
-		polybar
-		rofi
-		kitty
-		chromium
-		ntfs3g
-		nodejs_24
-    xclip
+  # List packages installed in system profile. To search, run: $ nix search wget
+  environment.systemPackages = with pkgs; [
+    git
+    kitty
+    chromium
+    ntfs3g
+    nodejs_24
     neovim
     firefox-esr
-
-
-    # Unstable packages
-		# pkgs-unstable.neovim
-	];
+    lua5_1
+    luarocks
+    gcc
+    unzip
+  ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Window Manager
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.windowManager.bspwm.enable = true;
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.nixdrz = {
-		isNormalUser = true;
-		description = "nix-drz";
-		extraGroups = [ "networkmanager" "wheel" ];
-		packages = with pkgs; [];
-	};
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enable wireless support via wpa_supplicant
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
 
   # Set your time zone.
   time.timeZone = "Asia/Makassar";
@@ -83,10 +46,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
-  # nix-ld adalah sebuah utilitas di ekosistem Nix (khususnya NixOS) yang 
-  # memungkinkan kamu menjalankan program biner (binary/executable) yang tidak 
-  # dibangun menggunakan Nix, tetapi secara otomatis menyediakan pustaka (library) 
-  # yang dibutuhkan dari sistem Nix kamu.
-  programs.nix-ld.enable = true;
 }
