@@ -11,11 +11,11 @@
     tree
     bat
     xdg-user-dirs
-    st
     fira-code
     fira-code-symbols
     ubuntu_font_family
     maim
+    stow
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -35,7 +35,6 @@
 
   # Modules
   imports = [
-    ./modules/kitty.nix
     ./modules/bash.nix
     ./modules/fonts.nix
     ./modules/urxvt.nix

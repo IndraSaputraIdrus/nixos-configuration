@@ -13,6 +13,7 @@
     ./modules/nix_ld.nix
     ./modules/ram_optimization.nix
     ./modules/bspwm.nix
+    ./modules/pulseaudio.nix
     # ./modules/hyprland.nix
   ];
 
