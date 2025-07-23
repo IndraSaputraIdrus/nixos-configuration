@@ -16,6 +16,8 @@
     ubuntu_font_family
     maim
     stow
+    feh
+    yazi
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -34,9 +36,5 @@
   programs.home-manager.enable = true;
 
   # Modules
-  imports = [
-    ./modules/bash.nix
-    ./modules/fonts.nix
-    ./modules/urxvt.nix
-  ];
+  imports = [ ./modules/bash.nix ./modules/fonts.nix ./modules/urxvt.nix ./modules/python.nix ];
 }

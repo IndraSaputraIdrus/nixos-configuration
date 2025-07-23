@@ -11,4 +11,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # expose port for develop vite with "--host"
+  networking.firewall.allowedTCPPorts = [ 5173 ];
 }

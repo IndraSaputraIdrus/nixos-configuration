@@ -30,6 +30,8 @@
     luarocks
     gcc
     unzip
+
+    nss #for chromium puppeteer
   ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
