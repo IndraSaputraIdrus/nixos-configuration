@@ -18,6 +18,10 @@
     stow
     feh
     yazi
+    lazygit
+    ripgrep
+    xfce.thunar
+    tmux
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -36,5 +40,11 @@
   programs.home-manager.enable = true;
 
   # Modules
-  imports = [ ./modules/bash.nix ./modules/fonts.nix ./modules/urxvt.nix ./modules/python.nix ];
+  imports = [
+    ./modules/bash.nix
+    ./modules/fonts.nix
+    ./modules/urxvt.nix
+    ./modules/python.nix
+    ./modules/postgresql.nix
+  ];
 }

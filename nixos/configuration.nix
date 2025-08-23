@@ -10,7 +10,6 @@
     ./modules/bootloader.nix
     ./modules/network.nix
     ./modules/users.nix
-    ./modules/nix_ld.nix
     ./modules/ram_optimization.nix
     ./modules/bspwm.nix
     ./modules/pulseaudio.nix
@@ -30,8 +29,6 @@
     luarocks
     gcc
     unzip
-
-    nss #for chromium puppeteer
   ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
