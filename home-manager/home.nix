@@ -11,9 +11,6 @@
     tree
     bat
     xdg-user-dirs
-    fira-code
-    fira-code-symbols
-    ubuntu_font_family
     maim
     stow
     feh
@@ -22,6 +19,8 @@
     ripgrep
     xfce.thunar
     tmux
+    wget
+    harfbuzz # untuk font ligature di st terminal
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -46,5 +45,6 @@
     ./modules/urxvt.nix
     ./modules/python.nix
     ./modules/postgresql.nix
+    ./modules/st.nix
   ];
 }
