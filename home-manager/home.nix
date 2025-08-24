@@ -32,7 +32,6 @@
     VISUAL = "nvim";
     CC = "gcc";
     CXX = "g++";
-    PATH = "$PATH:$HOME/.bun/bin";
   };
 
   # Let Home Manager install and manage itself.
@@ -46,5 +45,6 @@
     ./modules/python.nix
     ./modules/postgresql.nix
     ./modules/st.nix
+    ./modules/bun-baseline.nix
   ];
 }
