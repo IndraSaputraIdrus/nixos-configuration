@@ -13,6 +13,7 @@
     ./modules/ram_optimization.nix
     ./modules/bspwm.nix
     ./modules/pulseaudio.nix
+    ./modules/web_browser.nix
     # ./modules/hyprland.nix
   ];
 
@@ -20,11 +21,9 @@
   environment.systemPackages = with pkgs; [
     git
     kitty
-    chromium
     ntfs3g
     nodejs_24
     neovim
-    firefox-esr
     lua5_1
     luarocks
     gcc
