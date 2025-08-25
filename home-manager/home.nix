@@ -44,7 +44,7 @@
     ./modules/urxvt.nix
     ./modules/python.nix
     ./modules/postgresql.nix
-    ./modules/st.nix
+    ./modules/st/default.nix
     ./modules/bun-baseline.nix
   ];
 }
