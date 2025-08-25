@@ -5,5 +5,6 @@
     chromium
     kdePackages.falkon
     firefox-esr
+    qutebrowser
   ];
 }

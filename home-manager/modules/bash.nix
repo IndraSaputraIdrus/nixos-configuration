@@ -7,6 +7,8 @@
       btw = "echo I use nixos btw";
       nrs = "sudo nixos-rebuild switch --flake";
       cdproject = "cd $HOME/Documents/projects";
+      config = "git --git-dir=$HOME/dotfiles/ --work-tree=$HOME";
+      lzconfig = "GIT_DIR=$HOME/dotfiles GIT_WORK_TREE=$HOME lazygit";
     };
 
     initExtra = ''
