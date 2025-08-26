@@ -21,10 +21,14 @@
     procps
     harfbuzz # untuk font ligature di st terminal
   ];
-  home.sessionVariables = {
 
+  home.file = { };
+
+  home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    CC = "gcc";
+    CXX = "g++";
   };
 
   # Let Home Manager install and manage itself.

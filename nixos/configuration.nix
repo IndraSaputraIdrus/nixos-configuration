@@ -1,20 +1,14 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, system, config, pkgs, pkgs-unstable, ... }:
+{ config, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ./modules/bootloader.nix
     ./modules/network.nix
-    ./modules/users.nix
-    ./modules/ram_optimization.nix
     ./modules/xserver.nix
     ./modules/pulseaudio.nix
-    ./modules/web_browser.nix
+    ./modules/browser.nix
     ./modules/bspwm.nix
+    ./modules/bash.nix
   ];
 
   # List packages installed in system profile. To search, run: $ nix search wget
@@ -33,11 +27,30 @@
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Set your time zone.
   time.timeZone = "Asia/Makassar";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  users.users.nixdrz = {
+    isNormalUser = true;
+    description = "nix-drz";
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
+  };
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Zram
+  services.udisks2.enable = false;
+  services.gvfs.enable = false;
+  services.tumbler.enable = false;
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 100;
+
+  # Variable
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  }
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
