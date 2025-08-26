@@ -20,7 +20,7 @@ let
     sha256 = "1q5hldq7p15l4nfz4ybhf78mnxk2mqlksp8w1rv1yvcc30jmzszs";
   };
 
-in st.overrideAttrs (oldAttrs: rec {
+in pkgs.st.overrideAttrs (oldAttrs: rec {
   buildInputs = oldAttrs.buildInputs ++ [ pkgs.harfbuzz ];
   patches = [ scrollBack mouseScroll ligatures ];
   configFile = pkgs.writeText "config.def.h" (builtins.readFile ./config.def.h);

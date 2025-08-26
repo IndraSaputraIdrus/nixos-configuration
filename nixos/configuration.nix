@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-let stPatched = import ./modules/st/default.nix { inherit pkgs; };
+let
+  stPatched = import ./modules/st/default.nix { inherit pkgs; };
+  bunBaseline = pkgs.callPackage ./modules/bun-baseline.nix { };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -10,19 +12,25 @@ in {
     ./modules/browser.nix
     ./modules/bspwm.nix
     ./modules/bash.nix
+    ./modules/cli-tools.nix
+    ./modules/font.nix
   ];
 
   environment.systemPackages = with pkgs; [
-    git
     kitty
-    ntfs3g
+    ntfs3g # untuk baca partition windows
     nodejs_24
-    neovim
     lua5_1
     luarocks
     gcc
+    xdg-user-dirs
+    xfce.thunar
     unzip
+    neovim
+
+    # custom packages
     stPatched
+    bunBaseline
   ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
