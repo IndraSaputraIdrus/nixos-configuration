@@ -10,7 +10,7 @@ let
     Type=Application
     Terminal=false
     Name=ST Terminal
-    Exec=${stPatched}/bin/st
+    Exec=st
     Icon=utilities-terminal
   '';
 
@@ -35,14 +35,17 @@ let
   stPatched = (pkgs.st.overrideAttrs (oldAttrs: rec {
     buildInputs = oldAttrs.buildInputs ++ [ pkgs.harfbuzz ];
     patches = [ scrollBack mouseScroll ligatures ];
-    configFile = pkgs.writeText "config.def.h" (builtins.readFile ./st-config.h);
+    configFile =
+      pkgs.writeText "config.def.h" (builtins.readFile ./st-config.h);
     prePatch = ''
       cp ${configFile} config.def.h
     '';
   }));
 
 in {
-  home.packages = with pkgs; [ ];
+  home.packages = with pkgs; [
+    stPatched
+  ];
 
   home.file = {
     ".local/share/applications/st.desktop".source =

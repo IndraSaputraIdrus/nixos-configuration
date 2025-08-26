@@ -7,31 +7,24 @@
 
   home.packages = with pkgs; [
     btop
-    neofetch
+    fastfetch
     tree
     bat
     xdg-user-dirs
-    maim
-    stow
-    feh
     yazi
     lazygit
     ripgrep
     xfce.thunar
     tmux
     wget
+    curl
+    procps
     harfbuzz # untuk font ligature di st terminal
   ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = { };
-
   home.sessionVariables = {
+
     EDITOR = "nvim";
     VISUAL = "nvim";
-    CC = "gcc";
-    CXX = "g++";
   };
 
   # Let Home Manager install and manage itself.

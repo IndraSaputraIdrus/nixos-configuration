@@ -11,10 +11,10 @@
     ./modules/network.nix
     ./modules/users.nix
     ./modules/ram_optimization.nix
-    ./modules/display_manager.nix
-    ./modules/bspwm.nix
+    ./modules/xserver.nix
     ./modules/pulseaudio.nix
     ./modules/web_browser.nix
+    ./modules/bspwm.nix
   ];
 
   # List packages installed in system profile. To search, run: $ nix search wget
