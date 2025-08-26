@@ -1,6 +1,7 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
-{
+let stPatched = import ./modules/st/default.nix { inherit pkgs; };
+in {
   imports = [
     ./hardware-configuration.nix
     ./modules/network.nix
@@ -11,7 +12,6 @@
     ./modules/bash.nix
   ];
 
-  # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
     git
     kitty
@@ -22,6 +22,7 @@
     luarocks
     gcc
     unzip
+    stPatched
   ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
@@ -50,7 +51,7 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-  }
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

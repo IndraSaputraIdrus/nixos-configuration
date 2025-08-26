@@ -6,7 +6,7 @@
     unstableNixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { nixpkgs, unstableNixpkgs }@inputs:
+  outputs = { nixpkgs, unstableNixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
