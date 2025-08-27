@@ -27,6 +27,8 @@ in {
     xfce.thunar
     unzip
     neovim
+    tmux
+    git
 
     # custom packages
     stPatched
@@ -60,6 +62,9 @@ in {
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
+  # Run unpatched dynamic binaries on NixOS
+  programs.nix-ld.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
