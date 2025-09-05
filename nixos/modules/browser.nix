@@ -2,9 +2,9 @@
 
 {
   environment.systemPackages = with pkgs; [
-    chromium
     kdePackages.falkon
     firefox-esr
     qutebrowser
+    ungoogled-chromium
   ];
 }

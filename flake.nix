@@ -10,7 +10,6 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgsUnstable = unstableNixpkgs.${system};
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         modules = [ ./nixos/configuration.nix ];

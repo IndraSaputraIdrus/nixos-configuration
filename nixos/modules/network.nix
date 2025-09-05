@@ -16,15 +16,15 @@
   networking.firewall.allowedTCPPorts = [ 5173 ];
 
   # dns 
-  services.resolved = {
-    enable = true;
-    dnssec = "allow-downgrade";
-    extraConfig = ''
-      DNSOverTLS=yes
-      # bootstrap pakai IP AdGuard
-      DNS=94.140.14.14 94.140.15.15
-      # kalau mau pakai hostname juga bisa, tapi tetap wajib ada IP bootstrap
-      FallbackDNS=1.1.1.1 9.9.9.9
-    '';
-  };
+  # services.resolved = {
+  #   enable = true;
+  #   dnssec = "allow-downgrade";
+  #   extraConfig = ''
+  #     DNSOverTLS=yes
+  #     # bootstrap pakai IP AdGuard
+  #     DNS=94.140.14.14 94.140.15.15
+  #     # kalau mau pakai hostname juga bisa, tapi tetap wajib ada IP bootstrap
+  #     FallbackDNS=1.1.1.1 9.9.9.9
+  #   '';
+  # };
 }

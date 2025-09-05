@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   stPatched = import ./modules/st/default.nix { inherit pkgs; };
   bunBaseline = pkgs.callPackage ./modules/bun-baseline.nix { };
+  neovim-unstable = inputs.unstableNixpkgs.legacyPackages.${pkgs.system}.neovim;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -26,13 +27,15 @@ in {
     xdg-user-dirs
     xfce.thunar
     unzip
-    neovim
     tmux
     git
+    tree-sitter
+    coreutils
 
     # custom packages
     stPatched
     bunBaseline
+    neovim-unstable
   ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
